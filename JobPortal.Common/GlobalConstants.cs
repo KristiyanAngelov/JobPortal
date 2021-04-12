@@ -9,5 +9,7 @@
         public const string StudentRoleName = "Student";
 
         public const string CompanyRoleName = "Company";
+
+        public const string AdminAndCompanyRolesRoleName = "Admin, Company";
     }
 }

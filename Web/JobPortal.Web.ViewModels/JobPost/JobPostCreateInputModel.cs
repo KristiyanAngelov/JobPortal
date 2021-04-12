@@ -1,18 +1,13 @@
-﻿namespace JobPortal.Data.Models
+﻿namespace JobPortal.Web.ViewModels.JobPost
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using JobPortal.Data.Common.Models;
+    using JobPortal.Data.Models;
+    using JobPortal.Services.Mapping;
 
-    public class JobPost : BaseDeletableModel<string>
+    public class JobPostCreateInputModel : IMapTo<JobPost>
     {
-        public JobPost()
-        {
-            this.Candidates = new HashSet<WorkerJobPost>();
-        }
-
         [Required]
         [MaxLength(50)]
         public string PositionName { get; set; }
@@ -35,11 +30,9 @@
         [Required]
         public DateTime StartingDate { get; set; }
 
-        public virtual ICollection<WorkerJobPost> Candidates { get; set; }
-
         [Required]
+        [Display(Name = "Company")]
         public string CompanyId { get; set; }
 
-        public virtual Company Company { get; set; }
     }
 }

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\JobPortal.Data.Common\JobPortal.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\JobPortal.Data.Models\JobPortal.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\JobPortal.Web.ViewModels\JobPortal.Web.ViewModels.csproj" />
     <ProjectReference Include="..\JobPortal.Services.Mapping\JobPortal.Services.Mapping.csproj" />
   </ItemGroup>
 

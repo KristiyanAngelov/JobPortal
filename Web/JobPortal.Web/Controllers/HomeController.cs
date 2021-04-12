@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
 
+    using JobPortal.Data.Models;
     using JobPortal.Web.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;

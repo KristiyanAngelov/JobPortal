@@ -44,4 +44,8 @@
     <ProjectReference Include="..\JobPortal.Data.Models\JobPortal.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

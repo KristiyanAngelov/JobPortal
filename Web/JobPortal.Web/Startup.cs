@@ -8,7 +8,6 @@
     using JobPortal.Data.Models;
     using JobPortal.Data.Repositories;
     using JobPortal.Data.Seeding;
-    using JobPortal.Services.Data;
     using JobPortal.Services.Mapping;
     using JobPortal.Services.Messaging;
     using JobPortal.Web.ViewModels;
@@ -64,7 +63,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

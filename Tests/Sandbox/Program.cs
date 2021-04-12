@@ -5,17 +5,14 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using JobPortal.Data;
     using JobPortal.Data.Common;
     using JobPortal.Data.Common.Repositories;
     using JobPortal.Data.Models;
     using JobPortal.Data.Repositories;
     using JobPortal.Data.Seeding;
-    using JobPortal.Services.Data;
     using JobPortal.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -52,9 +49,6 @@
         {
             var sw = Stopwatch.StartNew();
 
-            var settingsService = serviceProvider.GetService<ISettingsService>();
-            Console.WriteLine($"Count of settings: {settingsService.GetCount()}");
-
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
         }
@@ -81,7 +75,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
     }
 }

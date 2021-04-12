@@ -24,7 +24,13 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<JobPost> JobPosts { get; set; }
+
+        public DbSet<WorkerJobPost> WorkerJobPosts { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -53,6 +59,25 @@
             this.ConfigureUserIdentityRelations(builder);
 
             EntityIndexesConfiguration.Configure(builder);
+
+            // Configure table relations
+            builder
+                .Entity<WorkerJobPost>()
+                .HasKey(x => new { x.CandidateId, x.JobPostId });
+
+            builder
+                .Entity<WorkerJobPost>()
+                .HasOne(c => c.Candidate)
+                .WithMany(jp => jp.JobApplications)
+                .HasForeignKey(c => c.CandidateId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<WorkerJobPost>()
+                .HasOne(jp => jp.JobPost)
+                .WithMany(c => c.Candidates)
+                .HasForeignKey(jp => jp.JobPostId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 

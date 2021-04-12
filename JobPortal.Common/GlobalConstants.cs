@@ -5,5 +5,9 @@
         public const string SystemName = "JobPortal";
 
         public const string AdministratorRoleName = "Administrator";
+
+        public const string StudentRoleName = "Student";
+
+        public const string CompanyRoleName = "Company";
     }
 }

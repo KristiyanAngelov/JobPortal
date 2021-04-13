@@ -15,6 +15,9 @@
         public string CompanyName { get; set; }
 
         [Required]
+        public string CompanyLogo{ get; set; }
+
+        [Required]
         public string CompanyDescription { get; set; }
 
         [Required]

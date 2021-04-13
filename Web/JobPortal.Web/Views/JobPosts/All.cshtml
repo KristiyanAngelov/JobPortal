@@ -216,21 +216,21 @@
                             <div class="single-job-items mb-30">
                                 <div class="job-items">
                                     <div class="company-img">
-                                        <a href="#"><img src="~/img/icon/job-list1.png" alt=""></a>
+                                        <a href="#"><img src="@job.CompanyLogo" width="85" height="85" alt=""></a>
                                     </div>
                                     <div class="job-tittle job-tittle2">
                                         <a href="#">
                                             <h4>@job.PositionName</h4>
                                         </a>
                                         <ul>
-                                            <li>@job.Company</li>
+                                            <li>@job.CompanyName</li>
                                             <li><i class="fas fa-map-marker-alt"></i>@job.Location</li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="items-link items-link2 f-right">
-                                    <a href="job_details.html">Full Time</a>
-                                    <span>@job.ApplicationDate.Date</span>
+                                    <a href="job_details.html">See details</a>
+                                    <span>@job.ApplicationDate.ToString("dd/MM/yyyy")</span>
                                 </div>
                             </div>
                         }
@@ -243,7 +243,7 @@
 </div>
 <!-- Job List Area End -->
 <!--Pagination Start  -->
-@*<div class="pagination-area pb-115 text-center">
+<div class="pagination-area pb-115 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -260,5 +260,5 @@
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
 <!--Pagination End  -->

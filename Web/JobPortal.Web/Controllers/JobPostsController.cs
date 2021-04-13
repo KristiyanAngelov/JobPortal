@@ -26,7 +26,7 @@
         {
             var viewModel = new AllJobPostsViewModel
             {
-                JobPosts = this.jobPostsService.GetAllJobPosts(),
+                JobPosts = this.jobPostsService.GetAllJobPosts<JobPostViewModel>(),
             };
 
             return this.View(viewModel);

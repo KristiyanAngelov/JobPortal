@@ -1,5 +1,6 @@
 ﻿namespace JobPortal.Services.Data
 {
+    using System;
     using System.Threading.Tasks;
 
     using JobPortal.Data.Common.Repositories;
@@ -15,10 +16,11 @@
             this.jobPostsRepository = jobPostsRepository;
         }
 
-        public async Task<string> CreateAsync(JobPostCreateInputModel inputModel)
+        public async Task<string> CreateAsync(JobPostCreateViewModel inputModel, string companyId)
         {
             var jobPost = new JobPost
             {
+                Id = Guid.NewGuid().ToString(),
                 PositionName = inputModel.PositionName,
                 CompanyDescription = inputModel.CompanyDescription,
                 JobResponsibilities = inputModel.JobResponsibilities,
@@ -26,6 +28,8 @@
                 Benefits = inputModel.Benefits,
                 ApplicationDate = inputModel.ApplicationDate,
                 StartingDate = inputModel.StartingDate,
+                Location = inputModel.Location,
+                CompanyId = companyId,
             };
 
             await this.jobPostsRepository.AddAsync(jobPost);

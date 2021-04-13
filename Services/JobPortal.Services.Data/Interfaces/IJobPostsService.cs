@@ -7,6 +7,6 @@
     public interface IJobPostsService
     {
         // CRUD
-        Task<string> CreateAsync(JobPostCreateInputModel inputModel);
+        Task<string> CreateAsync(JobPostCreateViewModel inputModel, string companyId);
     }
 }

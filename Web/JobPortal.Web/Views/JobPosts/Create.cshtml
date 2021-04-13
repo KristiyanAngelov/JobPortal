@@ -1,67 +1,61 @@
-﻿@model JobPortal.Web.ViewModels.JobPost.JobPostCreateInputModel
+﻿@model JobPortal.Web.ViewModels.JobPost.JobPostCreateViewModel
 
-    <div class="col-lg-8 col-md-8">
-        <h3 class="mb-30">Form Element</h3>
-        <form action="#">
-            <div class="mt-10">
-                <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+<div class="col-lg-8 col-md-8">
+    <h3 class="mb-30">Form Element</h3>
+    <form method="post" asp-action="Create">
+        <div class="mt-10">
+            <input asp-for="PositionName" type="text" name="PositionName" placeholder="Position name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'PositionName'" required="" class="single-input">
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="CompanyDescription" class="single-textarea" placeholder="Company description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'CompanyDescription'" required=""></textarea>
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="JobResponsibilities" class="single-textarea" placeholder="Job responsibilities" onfocus="this.placeholder = ''" onblur="this.placeholder = 'JobResponsibilities'" required=""></textarea>
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="JobRequirements" class="single-textarea" placeholder="Job requirements" onfocus="this.placeholder = ''" onblur="this.placeholder = 'JobRequirements'" required=""></textarea>
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="Benefits" class="single-textarea" placeholder="Benefits" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Benefits'" required=""></textarea>
+        </div>
+        <div class="mt-10">
+            <label asp-for="ApplicationDate"></label>
+            <input asp-for="ApplicationDate" type="date" name="ApplicationDate" placeholder="Application date" required="" class="single-input" value="mm/dd/yyyy">
+        </div>
+        <div class="mt-10">
+            <label asp-for="StartingDate"></label>
+            <input asp-for="StartingDate" type="date" name="StartingDate" placeholder="Starting date" required="" class="single-input" value="mm/dd/yyyy">
+        </div>
+
+        @* Country *@
+        <div class="input-group-icon mt-10">
+            <div class="icon">
+                <i class="fa fa-globe" aria-hidden="true"></i>
             </div>
-            <div class="mt-10">
-                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
-            </div>
-            <div class="mt-10">
-                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
-            </div>
-            <div class="mt-10">
-                <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" class="single-input">
-            </div>
-            <div class="input-group-icon mt-10">
-                <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-                <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required="" class="single-input">
-            </div>
-            <div class="input-group-icon mt-10">
-                <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-                <div class="form-select" id="default-select" "=" ">
-                    <select style="display: none;">
-                        <option value=" 1">Sofia</option>
-                        <option value="1">Plovdiv</option>
-                        <option value="1">Varna</option>
-                        <option value="1">Burgas</option>
-                        <option value="1">Stara Zagora</option>
-                    </select><div class="nice-select" tabindex="0"><span class="current">City</span><ul class="list"><li data-value=" 1" class="option selected">City</li><li data-value="1" class="option">Dhaka</li><li data-value="1" class="option">Dilli</li><li data-value="1" class="option">Newyork</li><li data-value="1" class="option">Islamabad</li></ul></div>
+            <div class="form-select" id="default-select" "=" " ">
+                <select asp-for="Location" style="display: none;">
+                    <option value="Sofia">Sofia</option>
+                    <option value="Plovdiv">Plovdiv</option>
+                    <option value="Varna">Varna</option>
+                    <option value="Burgas">Burgas</option>
+                    <option value="Stara Zagora">Stara Zagora</option>
+                </select>
+                <div class="nice-select" tabindex="0">
+                    <span class="current">City</span>
+                    <ul class="list">
+                        <li data-value="Sofia" class="option selected">Sofia</li>
+                        <li data-value="Plovdiv" class="option">Plovdiv</li>
+                        <li data-value="Varna" class="option">Varna</li>
+                        <li data-value="Burgas" class="option">Burgas</li>
+                        <li data-value="Stara Zagora" class="option">Stara Zagora</li>
+                    </ul>
                 </div>
             </div>
-            <div class="input-group-icon mt-10">
-                <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
-                <div class="form-select" id="default-select" "=" ">
-                    <select style="display: none;">
-                        <option value=" 1">Country</option>
-                        <option value="1">Bangladesh</option>
-                        <option value="1">India</option>
-                        <option value="1">England</option>
-                        <option value="1">Srilanka</option>
-                    </select><div class="nice-select" tabindex="0"><span class="current">Country</span><ul class="list"><li data-value=" 1" class="option selected">Country</li><li data-value="1" class="option">Bangladesh</li><li data-value="1" class="option">India</li><li data-value="1" class="option">England</li><li data-value="1" class="option">Srilanka</li></ul></div>
-                </div>
-            </div>
+        </div>
 
-            <div class="mt-10">
-                <textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required=""></textarea>
-            </div>
-            <!-- For Gradient Border Use -->
-            <!-- <div class="mt-10">
-                    <div class="primary-input">
-                        <input id="primary-input" type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'">
-                        <label for="primary-input"></label>
-                    </div>
-                </div> -->
-            <div class="mt-10">
-                <input type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'" required="" class="single-input-primary">
-            </div>
-            <div class="mt-10">
-                <input type="text" name="first_name" placeholder="Accent color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Accent color'" required="" class="single-input-accent">
-            </div>
-            <div class="mt-10">
-                <input type="text" name="first_name" placeholder="Secondary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Secondary color'" required="" class="single-input-secondary">
-            </div>
-        </form>
-    </div>
+        <div class="mt-10 text-center">
+            <input class="genric-btn success circle center" type="submit" />
+        </div>
+
+    </form>
+</div>

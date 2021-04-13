@@ -10,6 +10,6 @@
 
         public const string CompanyRoleName = "Company";
 
-        public const string AdminAndCompanyRolesRoleName = "Admin, Company";
+        public const string AdminAndCompanyRolesRoleName = "Administrator, Company";
     }
 }

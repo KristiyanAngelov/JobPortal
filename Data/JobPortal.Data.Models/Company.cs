@@ -10,21 +10,21 @@
             this.JobPostings = new HashSet<JobPost>();
         }
 
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         public string Logo { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         [MaxLength(50)]
         public string Location { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         public string WebSite { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         [MaxLength(50)]
         public string Description { get; set; }
 

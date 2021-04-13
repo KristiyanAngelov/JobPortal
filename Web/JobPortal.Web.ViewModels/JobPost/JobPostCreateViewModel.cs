@@ -3,10 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using JobPortal.Data.Models;
     using JobPortal.Services.Mapping;
 
-    public class JobPostCreateInputModel : IMapTo<JobPost>
+    public class JobPostCreateViewModel : IMapTo<JobPostCreateInputModel>
     {
         [Required]
         [MaxLength(50)]
@@ -33,10 +32,6 @@
         [Required]
         [MaxLength(50)]
         public string Location { get; set; }
-
-        [Required]
-        [Display(Name = "Company")]
-        public string CompanyId { get; set; }
 
     }
 }

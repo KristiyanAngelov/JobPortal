@@ -35,6 +35,10 @@
         [Required]
         public DateTime StartingDate { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string Location { get; set; }
+
         public virtual ICollection<WorkerJobPost> Candidates { get; set; }
 
         [Required]

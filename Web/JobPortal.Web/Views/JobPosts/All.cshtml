@@ -229,7 +229,7 @@
                                     </div>
                                 </div>
                                 <div class="items-link items-link2 f-right">
-                                    <a href="job_details.html">See details</a>
+                                    <a asp-action="GetById" asp-route-id="@job.Id">See details</a>
                                     <span>@job.ApplicationDate.ToString("dd/MM/yyyy")</span>
                                 </div>
                             </div>

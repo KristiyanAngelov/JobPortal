@@ -53,5 +53,17 @@
 
             return this.RedirectToAction("All");
         }
+
+        public IActionResult GetById(string id)
+        {
+            var viewModel = this.jobPostsService.GetJobById<JobPostViewModel>(id);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(viewModel);
+        }
     }
 }

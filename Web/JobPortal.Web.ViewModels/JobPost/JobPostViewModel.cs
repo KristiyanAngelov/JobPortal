@@ -9,10 +9,15 @@
     public class JobPostViewModel : IMapFrom<JobPost>
     {
         [Required]
+        public string Id { get; set; }
+
+        [Required]
         public string PositionName { get; set; }
 
         [Required]
         public string CompanyName { get; set; }
+
+        public Company Company { get; set; }
 
         [Required]
         public string CompanyLogo{ get; set; }

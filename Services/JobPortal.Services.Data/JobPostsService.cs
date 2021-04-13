@@ -50,11 +50,13 @@
                 .ToList();
         }
 
-        public ICollection<JobPost> GetAllJobPosts()
+        public T GetJobById<T>(string jobId)
         {
             return this.jobPostsRepository
                 .All()
-                .ToList();
+                .Where(x => x.Id == jobId)
+                .To<T>()
+                .FirstOrDefault();
         }
     }
 }

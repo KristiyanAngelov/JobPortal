@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using JobPortal.Data.Models;
     using JobPortal.Web.ViewModels.JobPost;
 
     public interface IJobPostsService
@@ -12,6 +11,6 @@
 
         public ICollection<T> GetAllJobPosts<T>();
 
-        public ICollection<JobPost> GetAllJobPosts();
+        public T GetJobById<T>(string jobId);
     }
 }

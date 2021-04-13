@@ -21,6 +21,9 @@
         public string CompanyDescription { get; set; }
 
         [Required]
+        public string CompanyLogo { get; set; }
+
+        [Required]
         public string JobResponsibilities { get; set; }
 
         [Required]

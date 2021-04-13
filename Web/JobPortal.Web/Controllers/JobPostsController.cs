@@ -1,5 +1,6 @@
 ﻿namespace JobPortal.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using JobPortal.Common;
@@ -23,7 +24,12 @@
 
         public IActionResult All()
         {
-            return this.View();
+            var viewModel = new AllJobPostsViewModel
+            {
+                JobPosts = this.jobPostsService.GetAllJobPosts(),
+            };
+
+            return this.View(viewModel);
         }
 
         [Authorize(Roles = GlobalConstants.AdminAndCompanyRolesRoleName)]
@@ -41,7 +47,7 @@
                 return this.View(input);
             }
 
-            var currentCompanyUser = await this.userManager.GetUserAsync(this.User);
+            var currentCompanyUser = await this.userManager.GetUserAsync(this.HttpContext.User);
 
             await this.jobPostsService.CreateAsync(input, currentCompanyUser.Id);
 

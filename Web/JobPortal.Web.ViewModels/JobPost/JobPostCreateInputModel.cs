@@ -22,6 +22,9 @@
         public string JobRequirements { get; set; }
 
         [Required]
+        public string CompanyLogo { get; set; }
+
+        [Required]
         public string Benefits { get; set; }
 
         [Required]

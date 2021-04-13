@@ -1,17 +1,20 @@
 ﻿namespace JobPortal.Services.Data
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using JobPortal.Data.Common.Repositories;
     using JobPortal.Data.Models;
+    using JobPortal.Services.Mapping;
     using JobPortal.Web.ViewModels.JobPost;
 
     public class JobPostsService : IJobPostsService
     {
-        private readonly IDeletableEntityRepository<JobPost> jobPostsRepository;
+        private readonly IRepository<JobPost> jobPostsRepository;
 
-        public JobPostsService(IDeletableEntityRepository<JobPost> jobPostsRepository)
+        public JobPostsService(IRepository<JobPost> jobPostsRepository)
         {
             this.jobPostsRepository = jobPostsRepository;
         }
@@ -21,6 +24,7 @@
             var jobPost = new JobPost
             {
                 Id = Guid.NewGuid().ToString(),
+                CompanyLogo = inputModel.CompanyLogo,
                 PositionName = inputModel.PositionName,
                 CompanyDescription = inputModel.CompanyDescription,
                 JobResponsibilities = inputModel.JobResponsibilities,
@@ -36,6 +40,21 @@
             await this.jobPostsRepository.SaveChangesAsync();
 
             return jobPost.Id;
+        }
+
+        public ICollection<T> GetAllJobPosts<T>()
+        {
+            return this.jobPostsRepository
+                .All()
+                .To<T>()
+                .ToList();
+        }
+
+        public ICollection<JobPost> GetAllJobPosts()
+        {
+            return this.jobPostsRepository
+                .All()
+                .ToList();
         }
     }
 }

@@ -3,13 +3,16 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using JobPortal.Data.Models;
     using JobPortal.Services.Mapping;
 
-    public class JobPostCreateViewModel : IMapTo<JobPostCreateInputModel>
+    public class JobPostViewModel : IMapFrom<JobPost>
     {
         [Required]
-        [MaxLength(50)]
         public string PositionName { get; set; }
+
+        [Required]
+        public string CompanyName { get; set; }
 
         [Required]
         public string CompanyDescription { get; set; }
@@ -21,9 +24,6 @@
         public string JobRequirements { get; set; }
 
         [Required]
-        public string CompanyLogo { get; set; }
-
-        [Required]
         public string Benefits { get; set; }
 
         [Required]
@@ -33,8 +33,6 @@
         public DateTime StartingDate { get; set; }
 
         [Required]
-        [MaxLength(50)]
         public string Location { get; set; }
-
     }
 }

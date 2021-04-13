@@ -1,0 +1,62 @@
+﻿@page
+@model RegisterModelCompany
+@{
+    ViewData["Title"] = "Register company account";
+}
+
+<h1 style="text-align:center" class="mt-50 mb-50">@ViewData["Title"]</h1>
+
+<div class="row mb-100">
+    <div class="col-md-4 ml-100">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.CompanyName"></label>
+                <input asp-for="Input.CompanyName" class="form-control" />
+                <span asp-validation-for="Input.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Logo"></label>
+                <input asp-for="Input.Logo" class="form-control" />
+                <span asp-validation-for="Input.Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Location"></label>
+                <input asp-for="Input.Location" class="form-control" />
+                <span asp-validation-for="Input.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.WebSite"></label>
+                <input asp-for="Input.WebSite" class="form-control" />
+                <span asp-validation-for="Input.WebSite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Description"></label>
+                <textarea asp-for="Input.Description" class="form-control"></textarea>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

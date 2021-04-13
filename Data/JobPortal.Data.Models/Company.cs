@@ -25,7 +25,6 @@
         public string WebSite { get; set; }
 
         [Required]
-        [MaxLength(50)]
         public string Description { get; set; }
 
         public virtual ICollection<JobPost> JobPostings { get; set; }

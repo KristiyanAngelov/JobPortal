@@ -6,7 +6,7 @@
 
         public const string AdministratorRoleName = "Administrator";
 
-        public const string StudentRoleName = "Student";
+        public const string WorkerRoleName = "Worker";
 
         public const string CompanyRoleName = "Company";
 

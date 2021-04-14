@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using JobPortal.Data.Common.Models;
+    using JobPortal.Data.Models.Enums;
 
     public class JobPost : BaseDeletableModel<string>
     {
@@ -25,6 +26,9 @@
 
         [Required]
         public string JobResponsibilities { get; set; }
+
+        [Required]
+        public JobType JobType { get; set; }
 
         [Required]
         public string JobRequirements { get; set; }

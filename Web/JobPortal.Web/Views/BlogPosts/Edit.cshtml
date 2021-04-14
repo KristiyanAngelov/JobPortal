@@ -1,0 +1,52 @@
+﻿@model JobPortal.Data.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Edit Blog Post";
+}
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageOrVideoUrl" class="control-label"></label>
+        <input asp-for="ImageOrVideoUrl" class="form-control" />
+        <span asp-validation-for="ImageOrVideoUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShortContent" class="control-label"></label>
+        @Html.EditorFor(x => x.ShortContent)
+        <span asp-validation-for="ShortContent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content" class="control-label"></label>
+        @Html.EditorFor(x => x.Content)
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MetaDescription" class="control-label"></label>
+        <textarea asp-for="MetaDescription" class="form-control"></textarea>
+        <span asp-validation-for="MetaDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MetaKeywords" class="control-label"></label>
+        <input asp-for="MetaKeywords" class="form-control" />
+        <span asp-validation-for="MetaKeywords" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CreatedOn" class="control-label"></label>
+        <input asp-for="CreatedOn" class="form-control" />
+        <span asp-validation-for="CreatedOn" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

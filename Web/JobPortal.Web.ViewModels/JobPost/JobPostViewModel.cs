@@ -18,6 +18,7 @@
         [Required]
         public string CompanyName { get; set; }
 
+        [Required]
         public Company Company { get; set; }
 
         [Required]

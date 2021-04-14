@@ -13,6 +13,9 @@
         public string JobTypes { get; set; }
 
         [Required]
+        public string City { get; set; }
+
+        [Required]
         public string WorkerId { get; set; }
 
         public Worker Worker { get; set; }

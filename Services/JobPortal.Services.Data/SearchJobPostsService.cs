@@ -19,7 +19,7 @@
             this.searchJobPostsRepository = searchJobPostsRepository;
         }
 
-        public async Task<string> CreateAsync(string positions, string jobTypes, string workerId)
+        public async Task<string> CreateAsync(string positions, string jobTypes, string workerId, string city)
         {
             var searchJobPost = new SearchJobPost
             {
@@ -27,6 +27,7 @@
                 Positions = positions,
                 JobTypes = jobTypes,
                 WorkerId = workerId,
+                City = city,
             };
 
             await this.searchJobPostsRepository.AddAsync(searchJobPost);

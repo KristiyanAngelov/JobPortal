@@ -1,0 +1,44 @@
+﻿@model JobPortal.Web.ViewModels.SearchJobPost.SearchJobPostViewModel
+
+<div class="col-lg-8 col-md-8">
+    <h3 class="mb-30">Form Element</h3>
+    <form method="post" asp-action="Create">
+        <div class="mt-10">
+            <input asp-for="Positions" type="text" name="Positions" placeholder="Positions " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Positions'" required="" class="single-input">
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="JobTypes" class="single-textarea" placeholder="JobTypes" onfocus="this.placeholder = ''" onblur="this.placeholder = 'JobTypes'" required=""></textarea>
+        </div>
+
+        @* Country *@
+        <div class="input-group-icon mt-10">
+            <div class="icon">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+            </div>
+            <div class="form-select" id="default-select" "=" " ">
+                <select asp-for="City" style="display: none;">
+                    <option value="Sofia">Sofia</option>
+                    <option value="Plovdiv">Plovdiv</option>
+                    <option value="Varna">Varna</option>
+                    <option value="Burgas">Burgas</option>
+                    <option value="Stara Zagora">Stara Zagora</option>
+                </select>
+                <div class="nice-select" tabindex="0">
+                    <span class="current">City</span>
+                    <ul class="list">
+                        <li data-value="Sofia" class="option selected">Sofia</li>
+                        <li data-value="Plovdiv" class="option">Plovdiv</li>
+                        <li data-value="Varna" class="option">Varna</li>
+                        <li data-value="Burgas" class="option">Burgas</li>
+                        <li data-value="Stara Zagora" class="option">Stara Zagora</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 text-center">
+            <input class="genric-btn success circle center" type="submit" />
+        </div>
+
+    </form>
+</div>

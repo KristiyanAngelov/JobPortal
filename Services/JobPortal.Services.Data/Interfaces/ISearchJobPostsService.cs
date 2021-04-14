@@ -5,7 +5,7 @@
 
     public interface ISearchJobPostsService
     {
-        public Task<string> CreateAsync(string positions, string jobTypes, string workerId);
+        public Task<string> CreateAsync(string positions, string jobTypes, string workerId, string city);
 
         public ICollection<T> GetAllSearchJobPosts<T>();
 

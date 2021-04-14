@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using JobPortal.Data.Models;
+    using JobPortal.Data.Models.Enums;
     using JobPortal.Services.Mapping;
 
     public class JobPostCreateInputModel : IMapTo<JobPost>
@@ -20,6 +21,9 @@
 
         [Required]
         public string JobRequirements { get; set; }
+
+        [Required]
+        public JobType JobType { get; set; }
 
         [Required]
         public string CompanyLogo { get; set; }

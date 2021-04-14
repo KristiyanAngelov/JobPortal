@@ -7,6 +7,12 @@
 
     public class Worker : ApplicationUser
     {
+        public Worker()
+        {
+            this.JobApplications = new HashSet<WorkerJobPost>();
+            this.SearchJobPosts = new HashSet<SearchJobPost>();
+        }
+
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -32,5 +38,7 @@
         public string Github { get; set; }
 
         public virtual ICollection<WorkerJobPost> JobApplications { get; set; }
+
+        public virtual ICollection<SearchJobPost> SearchJobPosts { get; set; }
     }
 }

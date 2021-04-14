@@ -6,5 +6,6 @@
         PartTime = 2,
         Remote = 3,
         Freelance = 4,
+        Internship = 5,
     }
 }

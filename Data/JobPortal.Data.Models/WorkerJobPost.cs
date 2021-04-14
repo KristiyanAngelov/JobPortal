@@ -4,12 +4,12 @@
 
     public class WorkerJobPost
     {
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         public string CandidateId { get; set; }
 
         public Worker Candidate { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Required]
+        [Required]
         public string JobPostId { get; set; }
 
         public JobPost JobPost { get; set; }

@@ -11,6 +11,7 @@
         {
             this.JobApplications = new HashSet<WorkerJobPost>();
             this.SearchJobPosts = new HashSet<SearchJobPost>();
+            this.Opinions = new HashSet<WorkerCompany>();
         }
 
         [Required]
@@ -40,5 +41,7 @@
         public virtual ICollection<WorkerJobPost> JobApplications { get; set; }
 
         public virtual ICollection<SearchJobPost> SearchJobPosts { get; set; }
+
+        public virtual ICollection<WorkerCompany> Opinions { get; set; }
     }
 }

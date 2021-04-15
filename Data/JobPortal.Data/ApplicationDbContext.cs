@@ -30,11 +30,13 @@
 
         public DbSet<JobPost> JobPosts { get; set; }
 
-        public DbSet<WorkerJobPost> WorkerJobPosts { get; set; }
-
         public DbSet<SearchJobPost> SearchJobPosts { get; set; }
 
         public DbSet<BlogPost> BlogPosts { get; set; }
+
+        public DbSet<WorkerJobPost> WorkerJobPosts { get; set; }
+
+        public DbSet<WorkerCompany> WorkerCompanies { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -82,6 +84,24 @@
                 .WithMany(c => c.Candidates)
                 .HasForeignKey(jp => jp.JobPostId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<WorkerCompany>()
+                .HasKey(x => new { x.WorkerId, x.CompanyId });
+
+            builder
+               .Entity<WorkerCompany>()
+               .HasOne(w => w.Worker)
+               .WithMany(o => o.Opinions)
+               .HasForeignKey(w => w.WorkerId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+              .Entity<WorkerCompany>()
+              .HasOne(c => c.Company)
+              .WithMany(wo => wo.WorkersOpinions)
+              .HasForeignKey(c => c.CompanyId)
+              .OnDelete(DeleteBehavior.Restrict);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 

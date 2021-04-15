@@ -1,0 +1,25 @@
+﻿@using JobPortal.Common
+@using JobPortal.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
+    </li>
+}
+@if (this.User.IsInRole(GlobalConstants.CompanyRoleName))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="/" asp-controller="JobPosts" asp-action="Create">Create post</a>
+    </li>
+}
+@if (this.User.IsInRole(GlobalConstants.WorkerRoleName))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="/" asp-controller="JobPosts" asp-action="Create">Create post</a>
+        <a class="nav-link text-dark" asp-area="/" asp-controller="Opinions" asp-action="Create">Add opinion</a>
+    </li>
+}

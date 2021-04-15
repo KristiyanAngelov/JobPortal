@@ -2,11 +2,12 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-
+    using JobPortal.Common;
     using JobPortal.Data.Common.Repositories;
     using JobPortal.Data.Models;
     using JobPortal.Services.Mapping;
     using JobPortal.Web.ViewModels.Blog;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -35,12 +36,15 @@
             return this.View(blogPost);
         }
 
+
+        [Authorize(Roles = GlobalConstants.CompanyRoleName)]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize(Roles = GlobalConstants.CompanyRoleName)]
         public async Task<IActionResult> Create(BlogPost blogPost)
         {
             if (this.ModelState.IsValid)

@@ -67,6 +67,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IJobPostsService, JobPostsService>();
             services.AddTransient<ISearchJobPostsService, SearchJobPostsService>();
+            services.AddTransient<IOpinionsService, OpinionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

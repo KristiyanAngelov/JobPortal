@@ -2,7 +2,7 @@
 
 namespace JobPortal.Data.Models
 {
-    public class WorkerCompany
+    public class Opinion
     {
         [Required]
         public string WorkerId { get; set; }
@@ -13,5 +13,8 @@ namespace JobPortal.Data.Models
         public string CompanyId { get; set; }
 
         public Company Company { get; set; }
+
+        [Required]
+        public string Text { get; set; }
     }
 }

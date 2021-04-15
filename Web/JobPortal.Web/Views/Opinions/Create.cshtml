@@ -1,0 +1,17 @@
+﻿@model JobPortal.Web.ViewModels.Opinion.CreateOpinionViewModel
+
+<div class="col-lg-8 col-md-8">
+    <h3 class="mb-30">Form Element</h3>
+    <form method="post" asp-action="Create">
+        <div class="mt-10">
+            <input asp-for="CompanyName" type="text" name="companyName" placeholder="Company name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company name'" required="" class="single-input">
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="Text" class="single-textarea" placeholder="Opinion" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Opinion'" required=""></textarea>
+        </div>
+        <div class="mt-10 text-center">
+            <input class="genric-btn success circle center" type="submit" />
+        </div>
+
+    </form>
+</div>

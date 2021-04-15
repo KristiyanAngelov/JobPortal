@@ -1,0 +1,82 @@
+﻿@model JobPortal.Web.ViewModels.Opinion.AllOpinionsViewModel
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="~/img/hero/about.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Find your worker</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Area End -->
+<!-- Job List Area Start -->
+<div class="job-listing-area pt-120 pb-120">
+    <div class="container">
+        <div class="row">
+            <!-- Left content -->
+            <div class="col-xl-3 col-lg-3 col-md-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="small-section-tittle2 mb-45">
+                            <h4>Filter Jobs</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right content -->
+            <div class="col-xl-9 col-lg-9 col-md-8">
+                <!-- Featured_job_start -->
+                <section class="featured-job-area">
+                    <div class="container">
+                        <!-- single-job-content -->
+                        @foreach (var opinion in Model.Opinions)
+                        {
+                            <div class="single-job-items mb-30">
+                                <div class="job-items">
+                                    <div class="company-img">
+                                        <img src="@opinion.Company.Logo" width="85" height="85" alt="">
+                                    </div>
+                                    <div class="job-tittle job-tittle2">
+                                        <a href="#">
+                                            <h4>@opinion.Company.Name</h4>
+                                        </a>
+                                        <ul>
+                                            <li>@opinion.Worker.FirstName @opinion.Worker.LastName </li>
+                                            <li>@opinion.Text</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Job List Area End -->
+<!--Pagination Start  -->
+<div class="pagination-area pb-115 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="single-wrap d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                            <li class="page-item"><a class="page-link" href="#">02</a></li>
+                            <li class="page-item"><a class="page-link" href="#">03</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Pagination End  -->

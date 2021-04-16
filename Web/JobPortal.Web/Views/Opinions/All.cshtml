@@ -66,7 +66,7 @@
     <div class="blog-pagination justify-content-center d-flex">
         <ul class="pagination">
             <li class="page-item">
-                <a asp-action="AllBlogPosts" asp-route-page="@Model.PreviousPage" class="page-link" aria-label="Previous">
+                <a asp-action="All" asp-route-page="@Model.PreviousPage" class="page-link" aria-label="Previous">
                     <i class="ti-angle-left"></i>
                 </a>
             </li>
@@ -86,7 +86,7 @@
                 }
             }
             <li>
-                <a asp-action="AllBlogPosts" asp-route-page="@Model.NextPage" class="page-link" aria-label="Next">
+                <a asp-action="All" asp-route-page="@Model.NextPage" class="page-link" aria-label="Next">
                     <i class="ti-angle-right"></i>
                 </a>
             </li>

@@ -1,5 +1,7 @@
 ﻿namespace JobPortal.Web.Controllers
 {
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using JobPortal.Common;
@@ -12,6 +14,7 @@
 
     public class SearchJobPostsController : BaseController
     {
+        private const int PostsPerPageDefaultValue = 5;
         private readonly ISearchJobPostsService searchJobPostsService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -21,14 +24,29 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue)
         {
-            var viewModel = new AllSearchJobPostsViewModel
+            var pagesCount = (int)Math.Ceiling(this.searchJobPostsService.GetAllSearchJobPosts().Count() / (decimal)perPage);
+
+            var posts = this.searchJobPostsService
+                .GetAllSearchJobPosts<SearchJobPostViewModel>()
+                .Skip(perPage * (page - 1))
+                .Take(perPage);
+
+            var model = new AllSearchJobPostsViewModel
             {
-                SearchJobPosts = this.searchJobPostsService.GetAllSearchJobPosts<SearchJobPostViewModel>(),
+                SearchJobPosts = posts.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
             };
 
-            return this.View(viewModel);
+            return this.View(model);
+            //var viewModel = new AllSearchJobPostsViewModel
+            //{
+            //    SearchJobPosts = this.searchJobPostsService.GetAllSearchJobPosts<SearchJobPostViewModel>(),
+            //};
+
+            //return this.View(viewModel);
         }
 
         [Authorize(Roles = GlobalConstants.WorkerRoleName)]

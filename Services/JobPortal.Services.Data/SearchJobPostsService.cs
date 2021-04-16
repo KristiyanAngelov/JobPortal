@@ -44,6 +44,13 @@
                  .ToList();
         }
 
+        public ICollection<SearchJobPost> GetAllSearchJobPosts()
+        {
+            return this.searchJobPostsRepository
+                 .All()
+                 .ToList();
+        }
+
         public T GetSearchJobPostById<T>(string searchJobPostId)
         {
             return this.searchJobPostsRepository

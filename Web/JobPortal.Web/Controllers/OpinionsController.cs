@@ -1,5 +1,7 @@
 ﻿namespace JobPortal.Web.Controllers
 {
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using JobPortal.Common;
     using JobPortal.Data.Models;
@@ -12,6 +14,7 @@
 
     public class OpinionsController : BaseController
     {
+        private const int PostsPerPageDefaultValue = 5;
         private readonly IOpinionsService opinionsService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -21,14 +24,29 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue)
         {
+            var pagesCount = (int)Math.Ceiling(this.opinionsService.GetAll().Count() / (decimal)perPage);
+
+            var posts = this.opinionsService
+                .GetAll()
+                .Skip(perPage * (page - 1))
+                .Take(perPage);
+
             var model = new AllOpinionsViewModel
             {
-                Opinions = this.opinionsService.GetAll(),
+                Opinions = posts.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
             };
 
             return this.View(model);
+            //var model = new AllOpinionsViewModel
+            //{
+            //    Opinions = this.opinionsService.GetAll(),
+            //};
+
+            //return this.View(model);
         }
 
         [Authorize(Roles = GlobalConstants.WorkerRoleName)]

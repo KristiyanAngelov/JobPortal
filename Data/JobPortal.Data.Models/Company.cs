@@ -8,6 +8,7 @@
         public Company()
         {
             this.JobPostings = new HashSet<JobPost>();
+            this.BlogPosts = new HashSet<BlogPost>();
             this.WorkersOpinions = new HashSet<Opinion>();
         }
 
@@ -29,6 +30,8 @@
         public string Description { get; set; }
 
         public virtual ICollection<JobPost> JobPostings { get; set; }
+
+        public virtual ICollection<BlogPost> BlogPosts { get; set; }
 
         public virtual ICollection<Opinion> WorkersOpinions { get; set; }
     }

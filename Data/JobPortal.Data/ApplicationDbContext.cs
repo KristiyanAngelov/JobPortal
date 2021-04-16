@@ -106,7 +106,6 @@
             builder.Entity<Opinion>().Navigation(x => x.Company).AutoInclude();
             builder.Entity<Opinion>().Navigation(x => x.Worker).AutoInclude();
 
-
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 
             // Set global query filter for not deleted entities only

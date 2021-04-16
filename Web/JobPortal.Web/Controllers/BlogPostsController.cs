@@ -8,16 +8,21 @@
     using JobPortal.Services.Mapping;
     using JobPortal.Web.ViewModels.Blog;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
     public class BlogPostsController : BaseController
     {
         private readonly IDeletableEntityRepository<BlogPost> blogPosts;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IRepository<Company> companiesRepository;
 
-        public BlogPostsController(IDeletableEntityRepository<BlogPost> blogPosts)
+        public BlogPostsController(IDeletableEntityRepository<BlogPost> blogPosts, UserManager<ApplicationUser> userManager, IRepository<Company> companiesRepository)
         {
             this.blogPosts = blogPosts;
+            this.userManager = userManager;
+            this.companiesRepository = companiesRepository;
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -47,11 +52,13 @@
         [Authorize(Roles = GlobalConstants.CompanyRoleName)]
         public async Task<IActionResult> Create(BlogPost blogPost)
         {
-            if (this.ModelState.IsValid)
+            blogPost.Company = this.companiesRepository.All().Where(x => x.Id == blogPost.CompanyId).FirstOrDefault();
+            //blogPost.CompanyId = user.Id;
+            if (this.ModelState.IsValid) //TODO: DEAL WITH INVALID MODEL STATE 
             {
                 await this.blogPosts.AddAsync(blogPost);
                 await this.blogPosts.SaveChangesAsync();
-                return this.RedirectToAction(nameof(this.Post));
+                return this.RedirectToAction(nameof(this.AllBlogPosts));
             }
 
             return this.View(blogPost);

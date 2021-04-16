@@ -22,5 +22,10 @@
         public string MetaKeywords { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public string CompanyId { get; set; }
+
+        public string CompanyName { get; set; }
+
     }
 }

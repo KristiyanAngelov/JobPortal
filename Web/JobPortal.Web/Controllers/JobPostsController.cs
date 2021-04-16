@@ -1,6 +1,8 @@
 ﻿namespace JobPortal.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using JobPortal.Common;
@@ -13,6 +15,7 @@
 
     public class JobPostsController : BaseController
     {
+        private const int PostsPerPageDefaultValue = 5;
         private readonly IJobPostsService jobPostsService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -22,14 +25,29 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue)
         {
-            var viewModel = new AllJobPostsViewModel
+            var pagesCount = (int)Math.Ceiling(this.jobPostsService.GetAllJobPosts().Count() / (decimal)perPage);
+
+            var posts = this.jobPostsService
+                .GetAllJobPosts<JobPostViewModel>()
+                .Skip(perPage * (page - 1))
+                .Take(perPage);
+
+            var model = new AllJobPostsViewModel
             {
-                JobPosts = this.jobPostsService.GetAllJobPosts<JobPostViewModel>(),
+                JobPosts = posts.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
             };
 
-            return this.View(viewModel);
+            return this.View(model);
+            //var viewModel = new AllJobPostsViewModel
+            //{
+            //    JobPosts = this.jobPostsService.GetAllJobPosts<JobPostViewModel>(),
+            //};
+
+            //return this.View(viewModel);
         }
 
         [Authorize(Roles = GlobalConstants.AdminAndCompanyRolesRoleName)]

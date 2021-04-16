@@ -1,5 +1,6 @@
 ﻿namespace JobPortal.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using JobPortal.Common;
@@ -14,6 +15,7 @@
 
     public class BlogPostsController : BaseController
     {
+        private const int PostsPerPageDefaultValue = 5;
         private readonly IDeletableEntityRepository<BlogPost> blogPosts;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IRepository<Company> companiesRepository;
@@ -41,7 +43,6 @@
             return this.View(blogPost);
         }
 
-
         [Authorize(Roles = GlobalConstants.CompanyRoleName)]
         public IActionResult Create()
         {
@@ -53,8 +54,7 @@
         public async Task<IActionResult> Create(BlogPost blogPost)
         {
             blogPost.Company = this.companiesRepository.All().Where(x => x.Id == blogPost.CompanyId).FirstOrDefault();
-            //blogPost.CompanyId = user.Id;
-            if (this.ModelState.IsValid) //TODO: DEAL WITH INVALID MODEL STATE 
+            if (this.ModelState.IsValid)
             {
                 await this.blogPosts.AddAsync(blogPost);
                 await this.blogPosts.SaveChangesAsync();
@@ -155,19 +155,37 @@
             return this.View(viewModel);
         }
 
-        public IActionResult AllBlogPosts()
+        public IActionResult AllBlogPosts(int page = 1, int perPage = PostsPerPageDefaultValue)
         {
-            var viewModel = new AllBlogPostsViewModel
-            {
-                BlogPosts = this.blogPosts.All().To<BlogPostViewModel>().ToList(),
+            var pagesCount = (int)Math.Ceiling(this.blogPosts.All().Count() / (decimal)perPage);
 
+            var posts = this.blogPosts
+                .All()
+                .Where(x => !x.IsDeleted)
+                .OrderByDescending(x => x.CreatedOn)
+                .To<BlogPostViewModel>()
+                .Skip(perPage * (page - 1))
+                .Take(perPage);
+
+            var model = new AllBlogPostsViewModel
+            {
+                BlogPosts = posts.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
             };
-            if (viewModel == null)
-            {
-                return this.NotFound("Blog posts were not found");
-            }
 
-            return this.View(viewModel);
+            return this.View(model);
+            //var viewModel = new AllBlogPostsViewModel
+            //{
+            //    BlogPosts = this.blogPosts.All().To<BlogPostViewModel>().ToList(),
+
+            //};
+            //if (viewModel == null)
+            //{
+            //    return this.NotFound("Blog posts were not found");
+            //}
+
+            //return this.View(viewModel);
         }
 
         private bool BlogPostExists(int id)

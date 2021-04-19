@@ -7,6 +7,7 @@
 
     using JobPortal.Common;
     using JobPortal.Data.Models;
+    using JobPortal.Data.Models.Enums;
     using JobPortal.Services.Data;
     using JobPortal.Web.ViewModels.JobPost;
     using Microsoft.AspNetCore.Authorization;
@@ -25,7 +26,19 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue)
+        public IActionResult Search()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult Search(List<JobType> jobTypes = null, string location = null)
+        {
+
+            return this.RedirectToAction("All", new { jobTypes, location });
+        }
+
+        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue, List<JobType> jobTypes = null, string location = null)
         {
             var pagesCount = (int)Math.Ceiling(this.jobPostsService.GetAllJobPosts().Count() / (decimal)perPage);
 
@@ -33,6 +46,16 @@
                 .GetAllJobPosts<JobPostViewModel>()
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
+
+            if (jobTypes.Any())
+            {
+                posts = posts.Where(x => jobTypes.Contains(x.JobType));
+            }
+
+            if (!string.IsNullOrEmpty(location))
+            {
+                posts = posts.Where(x => x.Location == location);
+            }
 
             var model = new AllJobPostsViewModel
             {
@@ -42,12 +65,6 @@
             };
 
             return this.View(model);
-            //var viewModel = new AllJobPostsViewModel
-            //{
-            //    JobPosts = this.jobPostsService.GetAllJobPosts<JobPostViewModel>(),
-            //};
-
-            //return this.View(viewModel);
         }
 
         [Authorize(Roles = GlobalConstants.AdminAndCompanyRolesRoleName)]

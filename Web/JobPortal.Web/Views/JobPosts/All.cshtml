@@ -20,6 +20,89 @@
 <div class="job-listing-area pt-120 pb-120">
     <div class="container">
         <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-4">
+                <form method="post" asp-action="Search">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="small-section-tittle2 mb-45">
+                                <h4>Filter Jobs</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Job Category Listing start -->
+                    <div class="job-category-listing mb-50">
+                        <!-- single Job Type -->
+                        <div class="single-listing">
+                            <div class="select-Categories pb-20">
+                                <div class="small-section-tittle2">
+                                    <h4>Job Type</h4>
+                                </div>
+                                @foreach (var item in Html.GetEnumSelectList<JobType>())
+                                {
+                                    <label class="container">
+                                        @item.Text
+                                        <input type="checkbox" name="jobTypes" value="@item.Value" />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                }
+                            </div>
+                            <!-- select-Categories End -->
+                        </div>
+                        <!-- single Job Location -->
+                        <div class="single-listing">
+                            <div class="small-section-tittle2">
+                                <h4>Job Location</h4>
+                            </div>
+                            <!-- Select job items start -->
+                            <div class="select-job-items2">
+                                <select name="location">
+                                    <option value="">Anywhere</option>
+                                    <option value="Sofia">Sofia</option>
+                                    <option value="Plovdiv">Plovdiv</option>
+                                    <option value="Burgas">Burgas</option>
+                                    <option value="Varna">Varna</option>
+                                    <option value="Stara Zagora">Stara Zagora</option>
+                                </select>
+                            </div>
+                            <!--  Select job items End-->
+                        </div>
+                        <!-- single Posted Within -->
+                        <!--<div class="single-listing">-->
+                        <!-- select-Categories start -->
+                        <!--<div class="select-Categories pb-50">
+                            <div class="small-section-tittle2 pt-70">
+                                <h4>Posted Within</h4>
+                            </div>
+                            <label class="container">
+                                Any
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Today
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Last 3 days
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Last 10 days
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>-->
+                        <!-- select-Categories End -->
+                        <!--</div>-->
+                    </div>
+                    <!-- Job Category Listing End -->
+                    <div style="text-align:center">
+                        <input type="submit" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
             <div class="col-xl-9 col-lg-9 col-md-8">
                 <!-- Featured_job_start -->
                 <section class="featured-job-area">
@@ -33,9 +116,9 @@
                                         <a href="#"><img src="@job.CompanyLogo" width="85" height="85" alt=""></a>
                                     </div>
                                     <div class="job-tittle job-tittle2">
-                                        
-                                            <h4>@job.PositionName</h4>
-                                        
+
+                                        <h4>@job.PositionName</h4>
+
                                         <ul>
                                             <li>@job.CompanyName</li>
                                             <li><i class="fas fa-map-marker-alt"></i>@job.Location</li>

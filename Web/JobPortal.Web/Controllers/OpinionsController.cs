@@ -24,14 +24,28 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue)
+        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue, string keyword = null)
         {
-            var pagesCount = (int)Math.Ceiling(this.opinionsService.GetAll().Count() / (decimal)perPage);
+            var pagesCount = 0;
 
             var posts = this.opinionsService
-                .GetAll()
-                .Skip(perPage * (page - 1))
-                .Take(perPage);
+                .GetAll();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                posts = posts
+                .Where(x => x.Company.Name.Contains(keyword)).ToList();
+
+                pagesCount = (int)Math.Ceiling(posts.Count() / (decimal)perPage);
+            }
+            else
+            {
+                pagesCount = (int)Math.Ceiling(this.opinionsService.GetAll().Count() / (decimal)perPage);
+                posts = posts
+                    .Skip(perPage * (page - 1))
+                    .Take(perPage)
+                    .ToList();
+            }
 
             var model = new AllOpinionsViewModel
             {
@@ -41,12 +55,6 @@
             };
 
             return this.View(model);
-            //var model = new AllOpinionsViewModel
-            //{
-            //    Opinions = this.opinionsService.GetAll(),
-            //};
-
-            //return this.View(model);
         }
 
         [Authorize(Roles = GlobalConstants.WorkerRoleName)]

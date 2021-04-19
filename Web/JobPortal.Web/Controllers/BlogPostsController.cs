@@ -155,17 +155,29 @@
             return this.View(viewModel);
         }
 
-        public IActionResult AllBlogPosts(int page = 1, int perPage = PostsPerPageDefaultValue)
+        public IActionResult AllBlogPosts(int page = 1, int perPage = PostsPerPageDefaultValue, string keyword = null)
         {
-            var pagesCount = (int)Math.Ceiling(this.blogPosts.All().Count() / (decimal)perPage);
-
+            var pagesCount = 0;
             var posts = this.blogPosts
                 .All()
                 .Where(x => !x.IsDeleted)
                 .OrderByDescending(x => x.CreatedOn)
-                .To<BlogPostViewModel>()
-                .Skip(perPage * (page - 1))
-                .Take(perPage);
+                .To<BlogPostViewModel>();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                posts = posts
+                .Where(x => x.Title.Contains(keyword));
+
+                pagesCount = (int)Math.Ceiling(posts.Count() / (decimal)perPage);
+            }
+            else
+            {
+                pagesCount = (int)Math.Ceiling(this.blogPosts.All().Count() / (decimal)perPage);
+                posts = posts
+                    .Skip(perPage * (page - 1))
+                    .Take(perPage);
+            }
 
             var model = new AllBlogPostsViewModel
             {
@@ -175,17 +187,6 @@
             };
 
             return this.View(model);
-            //var viewModel = new AllBlogPostsViewModel
-            //{
-            //    BlogPosts = this.blogPosts.All().To<BlogPostViewModel>().ToList(),
-
-            //};
-            //if (viewModel == null)
-            //{
-            //    return this.NotFound("Blog posts were not found");
-            //}
-
-            //return this.View(viewModel);
         }
 
         private bool BlogPostExists(int id)

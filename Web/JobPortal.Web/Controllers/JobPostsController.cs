@@ -26,18 +26,6 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Search()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public IActionResult Search(List<JobType> jobTypes = null, string location = null)
-        {
-
-            return this.RedirectToAction("All", new { jobTypes, location });
-        }
-
         public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue, List<JobType> jobTypes = null, string location = null)
         {
             var pagesCount = (int)Math.Ceiling(this.jobPostsService.GetAllJobPosts().Count() / (decimal)perPage);

@@ -7,6 +7,7 @@
 
     using JobPortal.Data.Common.Repositories;
     using JobPortal.Data.Models;
+    using JobPortal.Data.Models.Enums;
     using JobPortal.Services.Data.Interfaces;
     using JobPortal.Services.Mapping;
 
@@ -19,13 +20,13 @@
             this.searchJobPostsRepository = searchJobPostsRepository;
         }
 
-        public async Task<string> CreateAsync(string positions, string jobTypes, string workerId, string city)
+        public async Task<string> CreateAsync(string positions, JobType jobType, string workerId, string city)
         {
             var searchJobPost = new SearchJobPost
             {
                 Id = Guid.NewGuid().ToString(),
                 Positions = positions,
-                JobTypes = jobTypes,
+                JobType = jobType,
                 WorkerId = workerId,
                 City = city,
             };

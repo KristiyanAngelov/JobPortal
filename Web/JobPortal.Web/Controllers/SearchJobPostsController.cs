@@ -1,11 +1,13 @@
 ﻿namespace JobPortal.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using JobPortal.Common;
     using JobPortal.Data.Models;
+    using JobPortal.Data.Models.Enums;
     using JobPortal.Services.Data.Interfaces;
     using JobPortal.Web.ViewModels.SearchJobPost;
     using Microsoft.AspNetCore.Authorization;
@@ -24,7 +26,19 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue)
+        public IActionResult Search()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult Search(List<JobType> jobTypes = null, string location = null)
+        {
+
+            return this.RedirectToAction("All", new { jobTypes, location });
+        }
+
+        public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue, List<JobType> jobTypes = null, string location = null)
         {
             var pagesCount = (int)Math.Ceiling(this.searchJobPostsService.GetAllSearchJobPosts().Count() / (decimal)perPage);
 
@@ -32,6 +46,16 @@
                 .GetAllSearchJobPosts<SearchJobPostViewModel>()
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
+
+            if (jobTypes.Any())
+            {
+                posts = posts.Where(x => jobTypes.Contains(x.JobType));
+            }
+
+            if (!string.IsNullOrEmpty(location))
+            {
+                posts = posts.Where(x => x.City == location);
+            }
 
             var model = new AllSearchJobPostsViewModel
             {
@@ -57,7 +81,7 @@
 
         [Authorize(Roles = GlobalConstants.WorkerRoleName)]
         [HttpPost]
-        public async Task<IActionResult> Create(string positions, string jobTypes, string workerId, string city)
+        public async Task<IActionResult> Create(string positions, JobType jobType, string workerId, string city)
         {
             if (!this.ModelState.IsValid)
             {
@@ -65,7 +89,7 @@
             }
 
             var currentWorkerUser = await this.userManager.GetUserAsync(this.HttpContext.User);
-            await this.searchJobPostsService.CreateAsync(positions, jobTypes, currentWorkerUser.Id, city);
+            await this.searchJobPostsService.CreateAsync(positions, jobType, currentWorkerUser.Id, city);
 
             return this.RedirectToAction("All");
         }

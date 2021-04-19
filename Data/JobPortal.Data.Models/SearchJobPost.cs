@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using JobPortal.Data.Common.Models;
+    using JobPortal.Data.Models.Enums;
 
     public class SearchJobPost : BaseDeletableModel<string>
     {
@@ -10,7 +11,7 @@
         public string Positions { get; set; }
 
         [Required]
-        public string JobTypes { get; set; }
+        public JobType JobType { get; set; }
 
         [Required]
         public string City { get; set; }

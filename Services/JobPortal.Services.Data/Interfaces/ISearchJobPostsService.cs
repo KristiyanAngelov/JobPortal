@@ -1,12 +1,13 @@
 ﻿namespace JobPortal.Services.Data.Interfaces
 {
     using JobPortal.Data.Models;
+    using JobPortal.Data.Models.Enums;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface ISearchJobPostsService
     {
-        public Task<string> CreateAsync(string positions, string jobTypes, string workerId, string city);
+        public Task<string> CreateAsync(string positions, JobType jobType, string workerId, string city);
 
         public ICollection<T> GetAllSearchJobPosts<T>();
 

@@ -53,12 +53,6 @@
             };
 
             return this.View(model);
-            //var viewModel = new AllSearchJobPostsViewModel
-            //{
-            //    SearchJobPosts = this.searchJobPostsService.GetAllSearchJobPosts<SearchJobPostViewModel>(),
-            //};
-
-            //return this.View(viewModel);
         }
 
         [Authorize(Roles = GlobalConstants.WorkerRoleName)]

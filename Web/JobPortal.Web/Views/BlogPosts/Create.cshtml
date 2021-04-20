@@ -7,48 +7,41 @@
 @{
     ViewData["Title"] = "Create Blog Post";
 }
-
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Title" class="control-label"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ImageOrVideoUrl" class="control-label"></label>
-        <input asp-for="ImageOrVideoUrl" class="form-control" />
-        <span asp-validation-for="ImageOrVideoUrl" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ShortContent" class="control-label"></label>
-        @Html.EditorFor(x => x.ShortContent)
-        <span asp-validation-for="ShortContent" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Content" class="control-label"></label>
-        @Html.EditorFor(x => x.Content)
-        <span asp-validation-for="Content" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="MetaDescription" class="control-label"></label>
-        <textarea asp-for="MetaDescription" class="form-control"></textarea>
-        <span asp-validation-for="MetaDescription" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="MetaKeywords" class="control-label"></label>
-        <input asp-for="MetaKeywords" class="form-control" />
-        <span asp-validation-for="MetaKeywords" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input asp-for="CompanyId" value ="@this.UserManager.GetUserAsync(this.User).Result.Id" type="hidden"/>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-default" />
-    </div>
-    <div></div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="col-lg-8 col-md-8">
+    <h3 class="mb-30">Form Element</h3>
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mt-10">
+            <input asp-for="Title" class="single-input" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'"/>
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mt-10">
+            <input asp-for="ImageOrVideoUrl" class="single-input" placeholder="Image Or VideoUrl" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ImageOrVideoUrl'"/>
+            <span asp-validation-for="ImageOrVideoUrl" class="text-danger"></span>
+        </div>
+        <div class="mt-10">
+            <label asp-for="ShortContent" class="control-label"></label>
+            @Html.EditorFor(x => x.ShortContent)
+            <span asp-validation-for="ShortContent" class="text-danger"></span>
+        </div>
+        <div class="mt-10">
+            <label asp-for="Content" class="control-label"></label>
+            @Html.EditorFor(x => x.Content)
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <div class="mt-10">
+            <textarea asp-for="MetaDescription" class="single-textarea" placeholder="Meta Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'MetaDescription'"></textarea>
+            <span asp-validation-for="MetaDescription" class="text-danger"></span>
+        </div>
+        <div class="mt-10">
+            <input asp-for="MetaKeywords" class="single-input" placeholder="Meta Keywords" onfocus="this.placeholder = ''" onblur="this.placeholder = 'MetaKeywords'" />
+            <span asp-validation-for="MetaKeywords" class="text-danger"></span>
+        </div>
+        <div class="mt-10">
+            <input asp-for="CompanyId" value="@this.UserManager.GetUserAsync(this.User).Result.Id" type="hidden" />
+        </div>
+        <div class="mt-10 text-center">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </form>
 </div>

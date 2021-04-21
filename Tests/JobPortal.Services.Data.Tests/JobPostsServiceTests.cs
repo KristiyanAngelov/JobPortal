@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-
+using AutoMapper;
 using JobPortal.Data.Common.Repositories;
 using JobPortal.Data.Models;
 using JobPortal.Services.Mapping;
@@ -22,12 +22,9 @@ namespace JobPortal.Services.Data.Tests
 
         public JobPostsServiceTests()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
-            this.list = new List<JobPost>();
-            this.mockRepo = new Mock<IRepository<JobPost>>();
-            this.service = new JobPostsService(this.mockRepo.Object);
-            this.list.Add(new JobPost()
+            this.list = new List<JobPost>()
+            {
+                new JobPost()
                 {
                     Id = "1",
                     CompanyLogo = "www.test.com",
@@ -39,9 +36,9 @@ namespace JobPortal.Services.Data.Tests
                     ApplicationDate = new DateTime(2021 - 04 - 20),
                     StartingDate = new DateTime(2021 - 04 - 20),
                     Location = "Sofia",
-                });
-            this.list.Add(new JobPost()
-            {
+                },
+                new JobPost()
+                {
                 Id = "2",
                 CompanyLogo = "www.test.com2",
                 PositionName = "Intern2",
@@ -52,7 +49,11 @@ namespace JobPortal.Services.Data.Tests
                 ApplicationDate = new DateTime(2021 - 04 - 20),
                 StartingDate = new DateTime(2021 - 04 - 20),
                 Location = "Sofia2",
-            });
+                },
+            };
+
+            this.mockRepo = new Mock<IRepository<JobPost>>();
+            this.service = new JobPostsService(this.mockRepo.Object);
 
             this.mockRepo.Setup(x => x.All())
                 .Returns(this.list.AsQueryable());
@@ -94,9 +95,7 @@ namespace JobPortal.Services.Data.Tests
         //[Fact]
         //public void GetJobById_Should_Return_Correct_Job()
         //{
-        //    var job = this.mockRepo.Object.All().Where(x => x.Id == "2").To<JobPostViewModel>().FirstOrDefault();
-
-        //    //var job = this.service.GetJobById<JobPostViewModel>("2");
+        //    var job = this.service.GetJobById<JobPostViewModel>("2");
 
         //    Assert.Equal("Intern2", job.PositionName);
         //}

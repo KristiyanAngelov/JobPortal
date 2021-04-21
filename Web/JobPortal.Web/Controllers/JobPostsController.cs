@@ -88,5 +88,16 @@
 
             return this.View(viewModel);
         }
+
+        [Authorize(Roles = GlobalConstants.WorkerRoleName)]
+        public async Task<IActionResult> AddCandidate(string jobId)
+        {
+            var currentWorker = await this.userManager.GetUserAsync(this.HttpContext.User);
+
+            await this.jobPostsService.AddCandidateAsync(jobId, (Worker)currentWorker);
+
+            return this.RedirectToAction("GetById", new { id = jobId });
+        }
+
     }
 }

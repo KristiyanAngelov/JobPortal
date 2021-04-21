@@ -10,6 +10,8 @@
         // CRUD
         public Task<string> CreateAsync(JobPostCreateViewModel inputModel, string companyId);
 
+        public Task AddCandidateAsync(string jobPostId, Worker candidate);
+
         public ICollection<T> GetAllJobPosts<T>();
 
         public ICollection<JobPost> GetAllJobPosts();

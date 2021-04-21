@@ -42,6 +42,23 @@
             return jobPost.Id;
         }
 
+        public async Task AddCandidateAsync(string jobPostId, Worker candidate)
+        {
+            var jobPost = this.jobPostsRepository.All().FirstOrDefault(x => x.Id == jobPostId);
+            var workerJobPost = new WorkerJobPost()
+            {
+                CandidateId = candidate.Id,
+                Candidate = candidate,
+                JobPostId = jobPostId,
+                JobPost = jobPost,
+            };
+            candidate.JobApplications.Add(workerJobPost);
+            jobPost.Candidates.Add(workerJobPost);
+
+            await this.jobPostsRepository.SaveChangesAsync();
+
+        }
+
         public ICollection<T> GetAllJobPosts<T>()
         {
             return this.jobPostsRepository

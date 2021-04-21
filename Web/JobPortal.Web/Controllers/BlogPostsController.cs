@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using JobPortal.Common;
     using JobPortal.Data.Common.Repositories;
     using JobPortal.Data.Models;

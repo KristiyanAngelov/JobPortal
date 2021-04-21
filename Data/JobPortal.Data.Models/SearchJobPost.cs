@@ -1,4 +1,6 @@
-﻿namespace JobPortal.Data.Models
+﻿using System;
+
+namespace JobPortal.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
 

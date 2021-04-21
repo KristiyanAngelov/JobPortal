@@ -7,7 +7,7 @@
     using JobPortal.Data.Models.Enums;
     using JobPortal.Services.Mapping;
 
-    public class JobPostViewModel : IMapFrom<JobPost>
+    public class JobPostViewModel : IMapFrom<JobPost>, IMapTo<JobPost>
     {
         [Required]
         public string Id { get; set; }

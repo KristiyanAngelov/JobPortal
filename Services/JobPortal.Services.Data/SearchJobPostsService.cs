@@ -37,7 +37,7 @@
             return searchJobPost.Id;
         }
 
-        public ICollection<T> GetAllSearchJobPosts<T>()
+        public ICollection<T> GetAll<T>()
         {
             return this.searchJobPostsRepository
                  .All()
@@ -45,14 +45,14 @@
                  .ToList();
         }
 
-        public ICollection<SearchJobPost> GetAllSearchJobPosts()
+        public ICollection<SearchJobPost> GetAll()
         {
             return this.searchJobPostsRepository
                  .All()
                  .ToList();
         }
 
-        public T GetSearchJobPostById<T>(string searchJobPostId)
+        public T GetById<T>(string searchJobPostId)
         {
             return this.searchJobPostsRepository
                 .All()
@@ -61,7 +61,7 @@
                 .FirstOrDefault();
         }
 
-        public SearchJobPost GetSearchJobPostById(string searchJobPostId)
+        public SearchJobPost GetById(string searchJobPostId)
         {
             return this.searchJobPostsRepository
                 .All()

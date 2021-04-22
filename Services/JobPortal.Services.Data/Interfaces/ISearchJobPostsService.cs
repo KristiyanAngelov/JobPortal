@@ -9,12 +9,12 @@
     {
         public Task<string> CreateAsync(string positions, JobType jobType, string workerId, string city);
 
-        public ICollection<T> GetAllSearchJobPosts<T>();
+        public ICollection<T> GetAll<T>();
 
-        public ICollection<SearchJobPost> GetAllSearchJobPosts();
+        public ICollection<SearchJobPost> GetAll();
 
-        public T GetSearchJobPostById<T>(string jobId);
+        public T GetById<T>(string jobId);
 
-        public SearchJobPost GetSearchJobPostById(string jobId);
+        public SearchJobPost GetById(string jobId);
     }
 }

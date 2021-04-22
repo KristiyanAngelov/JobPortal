@@ -13,12 +13,12 @@
 
         public Task AddCandidateAsync(string jobPostId, Worker candidate);
 
-        public ICollection<T> GetAllJobPosts<T>();
+        public ICollection<T> GetAll<T>();
 
-        public ICollection<JobPost> GetAllJobPosts();
+        public ICollection<JobPost> GetAll();
 
-        public JobPost GetJobById(string jobId);
+        public JobPost GetById(string jobId);
 
-        public T GetJobById<T>(string jobId);
+        public T GetById<T>(string jobId);
     }
 }

@@ -59,7 +59,7 @@
 
         }
 
-        public ICollection<T> GetAllJobPosts<T>()
+        public ICollection<T> GetAll<T>()
         {
             return this.jobPostsRepository
                 .All()
@@ -67,21 +67,21 @@
                 .ToList();
         }
 
-        public ICollection<JobPost> GetAllJobPosts()
+        public ICollection<JobPost> GetAll()
         {
             return this.jobPostsRepository
                 .All()
                 .ToList();
         }
 
-        public JobPost GetJobById(string jobId)
+        public JobPost GetById(string jobId)
         {
             return this.jobPostsRepository
                 .All()
                 .FirstOrDefault(x => x.Id == jobId);
         }
 
-        public T GetJobById<T>(string jobId)
+        public T GetById<T>(string jobId)
         {
             return this.jobPostsRepository
                 .All()

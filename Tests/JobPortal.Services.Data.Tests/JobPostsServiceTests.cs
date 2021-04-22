@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using AutoMapper;
 using JobPortal.Data.Common.Repositories;
 using JobPortal.Data.Models;
 using JobPortal.Services.Mapping;

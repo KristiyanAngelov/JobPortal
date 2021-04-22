@@ -28,10 +28,10 @@
 
         public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue, List<JobType> jobTypes = null, string location = null)
         {
-            var pagesCount = (int)Math.Ceiling(this.jobPostsService.GetAllJobPosts().Count() / (decimal)perPage);
+            var pagesCount = (int)Math.Ceiling(this.jobPostsService.GetAll().Count() / (decimal)perPage);
 
             var posts = this.jobPostsService
-                .GetAllJobPosts<JobPostViewModel>()
+                .GetAll<JobPostViewModel>()
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
@@ -79,7 +79,7 @@
 
         public IActionResult GetById(string id)
         {
-            var viewModel = this.jobPostsService.GetJobById<JobPostViewModel>(id);
+            var viewModel = this.jobPostsService.GetById<JobPostViewModel>(id);
 
             if (viewModel == null)
             {

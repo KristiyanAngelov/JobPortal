@@ -28,10 +28,10 @@
 
         public IActionResult All(int page = 1, int perPage = PostsPerPageDefaultValue, List<JobType> jobTypes = null, string location = null)
         {
-            var pagesCount = (int)Math.Ceiling(this.searchJobPostsService.GetAllSearchJobPosts().Count() / (decimal)perPage);
+            var pagesCount = (int)Math.Ceiling(this.searchJobPostsService.GetAll().Count() / (decimal)perPage);
 
             var posts = this.searchJobPostsService
-                .GetAllSearchJobPosts<SearchJobPostViewModel>()
+                .GetAll<SearchJobPostViewModel>()
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
@@ -78,7 +78,7 @@
 
         public IActionResult GetById(string id)
         {
-            var viewModel = this.searchJobPostsService.GetSearchJobPostById<SearchJobPostViewModel>(id);
+            var viewModel = this.searchJobPostsService.GetById<SearchJobPostViewModel>(id);
 
             if (viewModel == null)
             {

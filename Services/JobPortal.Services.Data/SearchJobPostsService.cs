@@ -60,5 +60,12 @@
                 .To<T>()
                 .FirstOrDefault();
         }
+
+        public SearchJobPost GetSearchJobPostById(string searchJobPostId)
+        {
+            return this.searchJobPostsRepository
+                .All()
+                .FirstOrDefault(x => x.Id == searchJobPostId);
+        }
     }
 }

@@ -14,5 +14,7 @@
         public ICollection<SearchJobPost> GetAllSearchJobPosts();
 
         public T GetSearchJobPostById<T>(string jobId);
+
+        public SearchJobPost GetSearchJobPostById(string jobId);
     }
 }

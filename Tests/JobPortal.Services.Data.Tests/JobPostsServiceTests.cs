@@ -16,12 +16,13 @@ namespace JobPortal.Services.Data.Tests
 {
     public class JobPostsServiceTests
     {
-        private readonly List<JobPost> list;
-        private readonly Mock<IRepository<JobPost>> mockRepo;
-        private readonly JobPostsService service;
+        private List<JobPost> list;
+        private Mock<IRepository<JobPost>> mockRepo;
+        private JobPostsService service;
 
         public JobPostsServiceTests()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
             this.list = new List<JobPost>()
             {
                 new JobPost()
@@ -92,12 +93,12 @@ namespace JobPortal.Services.Data.Tests
             Assert.Equal(this.list, list2);
         }
 
-        //[Fact]
-        //public void GetJobById_Should_Return_Correct_Job()
-        //{
-        //    var job = this.service.GetJobById<JobPostViewModel>("2");
+        [Fact]
+        public void GetJobById_Should_Return_Correct_Job()
+        {
+            var job = this.service.GetJobById("2");
 
-        //    Assert.Equal("Intern2", job.PositionName);
-        //}
+            Assert.Equal("Intern2", job.PositionName);
+        }
     }
 }

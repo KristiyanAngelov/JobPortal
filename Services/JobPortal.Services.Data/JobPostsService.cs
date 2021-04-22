@@ -74,6 +74,13 @@
                 .ToList();
         }
 
+        public JobPost GetJobById(string jobId)
+        {
+            return this.jobPostsRepository
+                .All()
+                .FirstOrDefault(x => x.Id == jobId);
+        }
+
         public T GetJobById<T>(string jobId)
         {
             return this.jobPostsRepository

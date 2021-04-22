@@ -53,7 +53,7 @@ namespace JobPortal.Services.Data.Tests
         [Fact]
         public void GetAll_Should_Return_All_Two_Elements()
         {
-            var list2 = service.GetAllSearchJobPosts();
+            var list2 = service.GetAll();
 
             Assert.Equal(list,list2);
         }
@@ -61,7 +61,7 @@ namespace JobPortal.Services.Data.Tests
         [Fact]
         public void GetSearchJobById_Should_Return_Correct_SearchJobPost()
         {
-            var job = this.service.GetSearchJobPostById("2");
+            var job = this.service.GetById("2");
 
             Assert.Equal("2", job.WorkerId);
         }

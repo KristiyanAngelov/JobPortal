@@ -88,7 +88,7 @@ namespace JobPortal.Services.Data.Tests
         [Fact]
         public void GetAllJobPosts_Should_Return_All_Entities_From_JobPost_Table()
         {
-            var list2 = this.service.GetAllJobPosts();
+            var list2 = this.service.GetAll();
 
             Assert.Equal(this.list, list2);
         }
@@ -96,7 +96,7 @@ namespace JobPortal.Services.Data.Tests
         [Fact]
         public void GetJobById_Should_Return_Correct_Job()
         {
-            var job = this.service.GetJobById("2");
+            var job = this.service.GetById("2");
 
             Assert.Equal("Intern2", job.PositionName);
         }

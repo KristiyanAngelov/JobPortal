@@ -20,5 +20,7 @@
         public JobPost GetById(string jobId);
 
         public T GetById<T>(string jobId);
+
+        public ICollection<JobPost> GetAllCompanyJobPosts(string companyId);
     }
 }

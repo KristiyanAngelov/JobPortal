@@ -9,6 +9,7 @@
     using JobPortal.Data.Models;
     using JobPortal.Services.Mapping;
     using JobPortal.Web.ViewModels.JobPost;
+    using Microsoft.EntityFrameworkCore;
 
     public class JobPostsService : IJobPostsService
     {
@@ -88,6 +89,16 @@
                 .Where(x => x.Id == jobId)
                 .To<T>()
                 .FirstOrDefault();
+        }
+
+        public ICollection<JobPost> GetAllCompanyJobPosts(string companyId)
+        {
+            return this.jobPostsRepository
+                .All()
+                .Where(x => x.CompanyId == companyId)
+                .Include(x => x.Candidates)
+                .ThenInclude(x => x.Candidate)
+                .ToList();
         }
     }
 }

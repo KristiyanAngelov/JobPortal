@@ -98,5 +98,13 @@
 
             return this.RedirectToAction("GetById", new { id = jobId });
         }
+
+        [Authorize(Roles =GlobalConstants.AdminAndCompanyRolesRoleName)]
+        public IActionResult GetAllCandidates(string companyId)
+        {
+            var model = this.jobPostsService.GetAllCompanyJobPosts(companyId);
+
+            return this.View(model);
+        }
     }
 }

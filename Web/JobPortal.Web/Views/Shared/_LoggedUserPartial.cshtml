@@ -16,6 +16,9 @@
         <a class="nav-link text-dark" asp-area="/" asp-controller="JobPosts" asp-action="Create">Create post</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="/" asp-controller="JobPosts" asp-action="GetAllCandidates" asp-route-companyId="@this.UserManager.GetUserAsync(this.User).Result.Id">See all candidates</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link text-dark" asp-area="/" asp-controller="BlogPosts" asp-action="Create">Create blog post</a>
     </li>
 }

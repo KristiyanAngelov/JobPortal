@@ -1,18 +1,32 @@
-﻿@model ICollection<JobPortal.Data.Models.JobPost>;
+﻿@model ICollection<JobPortal.Data.Models.JobPost>
 
 @foreach (var item in Model)
 {
     <p>@item.PositionName</p>
+    int count = 1;
     @foreach (var candidate in item.Candidates)
     {
-<div class="job-items">
-    <p>Candidate -> @candidate.Candidate.FirstName @candidate.Candidate.LastName - @candidate.Candidate.Email</p>
-    <div class="items-link items-link2 ">
+        <div class="single-job-items mb-30">
+            <div class="job-items">
+                <div class="company-img">
+                    <a href="#"><img src="#" width="85" height="85" alt=""></a>
+                </div>
+                <div class="job-tittle job-tittle2">
 
-        <a asp-controller="Workers" asp-action="GetById" asp-route-workerId="@candidate.CandidateId">See details</a>
-    </div>
-</div>
-        
+                    <h4>@candidate.Candidate.FirstName @candidate.Candidate.LastName</h4>
+
+                    <ul>
+                        <li><i class="fas fa-genderless"></i>@candidate.Candidate.Gender</li>
+                        <li><i class="fa fa-linkedin-square" aria-hidden="true"></i>@candidate.Candidate.LinkedIn</li>
+                        <li><i class="fa-github-square"></i>@candidate.Candidate.Github</li>
+                    </ul>
+                </div>
+                <div class="items-link items-link2 ml-1">
+                    <a asp-controller="Workers" asp-action="GetById" asp-route-workerId="@candidate.CandidateId">See details</a>
+                </div>
+            </div>
+        </div>
+        count++;
     }
 
 }

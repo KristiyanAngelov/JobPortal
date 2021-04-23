@@ -25,6 +25,8 @@
         [Required]
         public Gender Gender { get; set; }
 
+        public string PictureUrl { get; set; }
+
         [Required]
         public string WorkExperience { get; set; }
 

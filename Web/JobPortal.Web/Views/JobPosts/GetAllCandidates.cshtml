@@ -1,5 +1,4 @@
 ﻿@model ICollection<JobPortal.Data.Models.JobPost>
-
 @foreach (var item in Model)
 {
     <p>@item.PositionName</p>
@@ -9,20 +8,20 @@
         <div class="single-job-items mb-30">
             <div class="job-items">
                 <div class="company-img">
-                    <a href="#"><img src="#" width="85" height="85" alt=""></a>
+                    <img src="@candidate.Candidate.PictureUrl" width="85" height="85" alt="">
                 </div>
                 <div class="job-tittle job-tittle2">
 
                     <h4>@candidate.Candidate.FirstName @candidate.Candidate.LastName</h4>
 
                     <ul>
-                        <li><i class="fas fa-genderless"></i>@candidate.Candidate.Gender</li>
-                        <li><i class="fa fa-linkedin-square" aria-hidden="true"></i>@candidate.Candidate.LinkedIn</li>
-                        <li><i class="fa-github-square"></i>@candidate.Candidate.Github</li>
+                        <li><i class="fa fa-genderless"></i>@candidate.Candidate.Gender</li>
+                        <li><i class="fa fa-linkedin-square" ></i>@candidate.Candidate.LinkedIn</li>
+                        <li><i class="fa fa-github-square"></i>@candidate.Candidate.Github</li>
                     </ul>
                 </div>
                 <div class="items-link items-link2 ml-1">
-                    <a asp-controller="Workers" asp-action="GetById" asp-route-workerId="@candidate.CandidateId">See details</a>
+                    <a asp-controller="Workers" asp-action="GetById" asp-route-workerId="@candidate.CandidateId">See more details</a>
                 </div>
             </div>
         </div>

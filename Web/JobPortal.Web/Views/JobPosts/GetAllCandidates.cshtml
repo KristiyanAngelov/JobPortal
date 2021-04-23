@@ -5,7 +5,14 @@
     <p>@item.PositionName</p>
     @foreach (var candidate in item.Candidates)
     {
-        <p>Candidate -> @candidate.Candidate.FirstName @candidate.Candidate.LastName - @candidate.Candidate.Email</p>
+<div class="job-items">
+    <p>Candidate -> @candidate.Candidate.FirstName @candidate.Candidate.LastName - @candidate.Candidate.Email</p>
+    <div class="items-link items-link2 ">
+
+        <a asp-controller="Workers" asp-action="GetById" asp-route-workerId="@candidate.CandidateId">See details</a>
+    </div>
+</div>
+        
     }
 
 }

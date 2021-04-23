@@ -68,6 +68,7 @@
             services.AddTransient<IJobPostsService, JobPostsService>();
             services.AddTransient<ISearchJobPostsService, SearchJobPostsService>();
             services.AddTransient<IOpinionsService, OpinionsService>();
+            services.AddTransient<IWorkersService, WorkersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
